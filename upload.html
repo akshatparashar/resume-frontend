@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Resume - AI Resume Analyzer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">⚡ ResumeAI</a>
+            <ul class="navbar-menu">
+                <li><a href="index.html" class="navbar-link">Home</a></li>
+                <li><a href="upload.html" class="navbar-link active">Upload</a></li>
+                <li><a href="dashboard.html" class="navbar-link">Dashboard</a></li>
+                <li><a href="signin.html" class="btn btn-primary">Sign In</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Upload Section -->
+    <section class="section" style="padding-top: 150px; min-height: 100vh;">
+        <div class="container" style="max-width: 900px;">
+            <div class="text-center mb-5">
+                <h1 class="mb-3">Upload Your Resume</h1>
+                <p class="hero-subtitle">
+                    Drop your resume and let our AI analyze it to unlock powerful career insights
+                </p>
+            </div>
+
+            <!-- Upload Box -->
+            <div class="upload-box" id="uploadBox">
+                <div class="upload-icon">📄</div>
+                <h3 class="upload-text">Drag & drop your resume here</h3>
+                <p class="upload-formats">or click to browse</p>
+                <p class="upload-formats">Supported formats: PDF, DOCX (Max 10MB)</p>
+                <input type="file" id="fileInput" accept=".pdf,.docx" style="display: none;">
+            </div>
+
+            <div id="fileInfo" style="display: none; margin-top: 2rem;">
+                <div class="card">
+                    <div class="flex-between mb-3">
+                        <div>
+                            <h4 id="fileName" style="color: var(--text-primary);"></h4>
+                            <p id="fileSize" style="color: var(--text-secondary); font-size: 0.9rem;"></p>
+                        </div>
+                        <button class="btn btn-secondary" id="removeFileBtn">Remove</button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="uploadProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Role Selection -->
+            <div class="card mt-4">
+                <h3 class="card-title">Target Job Role</h3>
+                <p class="card-text mb-3">Select the role you're targeting for personalized analysis</p>
+
+                <div class="form-group">
+                    <label for="jobRole" class="form-label">Job Role</label>
+                    <select id="jobRole" class="form-select">
+                        <option value="">Select a role...</option>
+                        <option value="software-engineer">Software Engineer</option>
+                        <option value="frontend-developer">Frontend Developer</option>
+                        <option value="backend-developer">Backend Developer</option>
+                        <option value="fullstack-developer">Full Stack Developer</option>
+                        <option value="devops-engineer">DevOps Engineer</option>
+                        <option value="data-scientist">Data Scientist</option>
+                        <option value="data-analyst">Data Analyst</option>
+                        <option value="product-manager">Product Manager</option>
+                        <option value="ui-ux-designer">UI/UX Designer</option>
+                        <option value="project-manager">Project Manager</option>
+                        <option value="business-analyst">Business Analyst</option>
+                        <option value="marketing-manager">Marketing Manager</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="experienceLevel" class="form-label">Experience Level</label>
+                    <select id="experienceLevel" class="form-select">
+                        <option value="">Select experience level...</option>
+                        <option value="entry">Entry Level (0-2 years)</option>
+                        <option value="mid">Mid Level (3-5 years)</option>
+                        <option value="senior">Senior Level (6-10 years)</option>
+                        <option value="lead">Lead/Principal (10+ years)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Analyze Button -->
+            <div class="mt-4 text-center">
+                <button class="btn btn-primary btn-large" id="analyzeBtn" disabled>
+                    Analyze Resume
+                </button>
+            </div>
+
+            <!-- Quick Tips -->
+            <div class="card card-glass mt-5">
+                <h3 class="card-title">💡 Tips for Best Results</h3>
+                <ul class="styled-list success mt-3">
+                    <li>Ensure your resume is clear and well-formatted</li>
+                    <li>Include specific skills, technologies, and achievements</li>
+                    <li>Use industry-standard job titles and terminology</li>
+                    <li>Keep file size under 10MB for faster processing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 ResumeAI - AI-Powered Resume Analyzer & Career Mentor. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Resume Analyzer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">⚡ ResumeAI</a>
+            <ul class="navbar-menu">
+                <li><a href="index.html" class="navbar-link">Home</a></li>
+                <li><a href="upload.html" class="navbar-link">Upload</a></li>
+                <li><a href="dashboard.html" class="navbar-link active">Dashboard</a></li>
+                <li><a href="signin.html" class="btn btn-primary">Sign In</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3 style="margin-bottom: 2rem; color: var(--text-primary);">Dashboard</h3>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="dashboard.html" class="sidebar-link active">
+                        <span class="sidebar-icon">📊</span>
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="suggestions.html" class="sidebar-link">
+                        <span class="sidebar-icon">✨</span>
+                        <span>Suggestions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="career.html" class="sidebar-link">
+                        <span class="sidebar-icon">🎯</span>
+                        <span>Career Mentor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="job-match.html" class="sidebar-link">
+                        <span class="sidebar-icon">💼</span>
+                        <span>Job Matching</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="upload.html" class="sidebar-link">
+                        <span class="sidebar-icon">📤</span>
+                        <span>Upload Resume</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">Profile</p>
+                <div class="flex" style="align-items: center; gap: 0.75rem;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-primary);"></div>
+                    <div>
+                        <p style="font-weight: 600; font-size: 0.9rem; margin: 0;">Alex Chen</p>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Software Engineer</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="fade-in">
+                <!-- Header -->
+                <div class="mb-5">
+                    <h1 class="mb-2">Welcome Back !👋</h1>
+                    <p style="color: var(--text-secondary); font-size: 1.125rem;">
+                        Here's your resume performance and career insights
+                    </p>
+                    <div class="card mb-5">
+                        <h3 class="card-title mb-3">Resume Information</h3>
+                    
+                        <p><strong>Name:</strong> <span id="name">Loading...</span></p>
+                        <p><strong>Email:</strong> <span id="email">Loading...</span></p>
+                        <p><strong>Phone:</strong> <span id="phone">Loading...</span></p>
+                    </div>
+                </div>
+
+                <!-- Stat Cards -->
+                <div class="grid grid-4 mb-5">
+                    <div class="stat-card">
+                        <p class="stat-label">Resume Score</p>
+                        <p class="stat-value" id="resumeScore">87</p>
+                        <div class="progress-bar mt-2">
+                            <div class="progress-fill" style="width: 87%"></div>
+                        </div>
+                        <p class="stat-change positive mt-2">↑ +5% from last update</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <p class="stat-label">ATS Score</p>
+                        <p class="stat-value" id="atsScore">--</p>
+                        <div class="progress-bar mt-2">
+                            <div class="progress-fill" id="atsProgress"></div>
+                        </div>
+                        <p class="stat-change positive mt-2">↑ Excellent compatibility</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <p class="stat-label">Skill Match</p>
+                        <p class="stat-value" id="skillMatch">78<span style="font-size: 1.5rem;">%</span></p>
+                        <div class="progress-bar mt-2">
+                            <div class="progress-fill" style="width: 78%"></div>
+                        </div>
+                        <p class="stat-change negative mt-2">3 skills missing</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <p class="stat-label">Career Level</p>
+                        <p class="stat-value" style="font-size: 1.75rem;">Mid</p>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">
+                            3-5 years experience
+                        </p>
+                        <p class="stat-change positive mt-2">On track for Senior</p>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="grid grid-2 mb-5">
+
+                    <div class="card">
+                        <h3 class="card-title mb-3">Your Top Skills</h3>
+                        <div class="skill-chips" id="skillsContainer"></div>
+                    </div>
+                
+                    <div class="card">
+                        <h3 class="card-title mb-3">Recommended Skills to Add</h3>
+                
+                        <div class="skill-chips" id="recommendedSkills">
+                            <span class="skill-chip missing">React</span>
+                            <span class="skill-chip missing">Docker</span>
+                            <span class="skill-chip missing">System Design</span>
+                        </div>
+                
+                        <a href="career.html" class="btn btn-secondary mt-3" style="width: 100%;">
+                            View Learning Path
+                        </a>
+                    </div>
+                
+                </div>
+                        <a href="career.html" class="btn btn-secondary mt-3" style="width: 100%;">
+                            View Learning Path
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card card-gradient">
+                    <h3 class="card-title mb-3">Quick Actions</h3>
+                    <div class="grid grid-3" style="gap: 1rem;">
+                        <a href="suggestions.html" class="btn btn-secondary">
+                            📝 View Suggestions
+                        </a>
+                        <a href="job-match.html" class="btn btn-secondary">
+                            🔍 Match with JD
+                        </a>
+                        <a href="career.html" class="btn btn-secondary">
+                            🚀 Career Roadmap
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card mt-5">
+                    <h3 class="card-title mb-3">Recent Activity</h3>
+                    <ul class="styled-list">
+                        <li>Resume analyzed on <span id="analysisDate"></span></li>
+                        <li>ATS score improved from 85 to 92 - Yesterday</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 ResumeAI - AI-Powered Resume Analyzer & Career Mentor. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

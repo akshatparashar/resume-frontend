@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Matching - AI Resume Analyzer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">⚡ ResumeAI</a>
+            <ul class="navbar-menu">
+                <li><a href="index.html" class="navbar-link">Home</a></li>
+                <li><a href="upload.html" class="navbar-link">Upload</a></li>
+                <li><a href="dashboard.html" class="navbar-link active">Dashboard</a></li>
+                <li><a href="signin.html" class="btn btn-primary">Sign In</a></li>
+                <li><a href="signup.html" class="btn btn-primary">Sign Up</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3 style="margin-bottom: 2rem; color: var(--text-primary);">Dashboard</h3>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="dashboard.html" class="sidebar-link">
+                        <span class="sidebar-icon">📊</span>
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="suggestions.html" class="sidebar-link">
+                        <span class="sidebar-icon">✨</span>
+                        <span>Suggestions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="career.html" class="sidebar-link">
+                        <span class="sidebar-icon">🎯</span>
+                        <span>Career Mentor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="job-match.html" class="sidebar-link active">
+                        <span class="sidebar-icon">💼</span>
+                        <span>Job Matching</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="upload.html" class="sidebar-link">
+                        <span class="sidebar-icon">📤</span>
+                        <span>Upload Resume</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">Profile</p>
+                <div class="flex" style="align-items: center; gap: 0.75rem;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-primary);"></div>
+                    <div>
+                        <p id="profileName" style="font-weight: 600; font-size: 0.9rem; margin: 0;">Loading...</p>
+                        <p id="profileRole" style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="fade-in">
+                <!-- Header -->
+                <div class="mb-5">
+                    <h1 class="mb-2">Resume vs Job Description Matching 💼</h1>
+                    <p style="color: var(--text-secondary); font-size: 1.125rem;">
+                        Compare your resume against job descriptions to see how well you match
+                    </p>
+                </div>
+
+                <!-- Job Description Input -->
+                <div class="card mb-5">
+                    <h3 class="card-title mb-3">Paste Job Description</h3>
+                    <p class="card-text mb-3">
+                        Copy and paste the job description you want to match against your resume
+                    </p>
+
+                    <div class="form-group">
+                        <label for="jobDescription" class="form-label">Job Description</label>
+                        <textarea
+                            id="jobDescription"
+                            class="form-textarea"
+                            placeholder="Paste the job description here..."
+                            style="min-height: 200px;"
+                        ></textarea>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="analyzeMatchBtn">
+                        Analyze Match
+                    </button>
+                </div>
+
+                <!-- Match Results (Initially Hidden) -->
+                <div id="matchResults" style="display: none;">
+                    <!-- Match Score Display -->
+                    <div class="match-score-display mb-5">
+                        <h3 class="card-title mb-4">Overall Match Score</h3>
+                        <div class="match-score-circle">
+                            <div class="match-score-value" id="matchScoreValue">85<span style="font-size: 2rem;">%</span></div>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 1.125rem; margin-top: 1rem;">
+                            Strong match - You meet most of the key requirements
+                        </p>
+                    </div>
+
+                    <!-- Detailed Breakdown -->
+                    <div class="grid grid-3 mb-5">
+                        <div class="stat-card">
+                            <p class="stat-label">Skills Match</p>
+                            <p class="stat-value" id="skillsMatchScore">82<span style="font-size: 1.5rem;">%</span></p>
+                            <div class="progress-bar mt-2">
+                                <div class="progress-fill" style="width: 82%"></div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <p class="stat-label">Experience Match</p>
+                            <p class="stat-value" id="experienceMatchScore">90<span style="font-size: 1.5rem;">%</span></p>
+                            <div class="progress-bar mt-2">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <p class="stat-label">Keyword Match</p>
+                            <p class="stat-value" id="keywordMatchScore">78<span style="font-size: 1.5rem;">%</span></p>
+                            <div class="progress-bar mt-2">
+                                <div class="progress-fill" style="width: 78%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Matched Skills -->
+                    <div class="card mb-5">
+                        <h2 class="card-title mb-3" style="color: var(--accent-teal);">✓ Matched Skills</h2>
+                        <p class="card-text mb-4">
+                            Skills from the job description that appear in your resume
+                        </p>
+
+                        <div class="skill-chips">
+                            <span class="skill-chip matched">JavaScript</span>
+                            <span class="skill-chip matched">React</span>
+                            <span class="skill-chip matched">Node.js</span>
+                            <span class="skill-chip matched">TypeScript</span>
+                            <span class="skill-chip matched">MongoDB</span>
+                            <span class="skill-chip matched">REST API</span>
+                            <span class="skill-chip matched">Git</span>
+                            <span class="skill-chip matched">AWS</span>
+                            <span class="skill-chip matched">Docker</span>
+                            <span class="skill-chip matched">SQL</span>
+                            <span class="skill-chip matched">Agile</span>
+                            <span class="skill-chip matched">CI/CD</span>
+                        </div>
+
+                        <div class="mt-4" style="background: rgba(20, 184, 166, 0.1); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--accent-teal);">
+                            <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.25rem;">
+                                ✓ Strong Foundation
+                            </p>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0;">
+                                You have 12 out of 15 required skills from the job description
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Missing Skills -->
+                    <div class="card mb-5">
+                        <h2 class="card-title mb-3" style="color: #ef4444;">✕ Missing Skills</h2>
+                        <p class="card-text mb-4">
+                            Skills mentioned in the job description that are not in your resume
+                        </p>
+
+                        <div class="grid grid-3" style="gap: 1rem;">
+                            <div class="card-glass" style="padding: 1.25rem; border-left: 3px solid #ef4444;">
+                                <h4 style="color: var(--text-primary); font-size: 1rem; margin-bottom: 0.5rem;">GraphQL</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.75rem;">
+                                    Required for API development
+                                </p>
+                                <span style="font-size: 0.75rem; color: #ef4444; font-weight: 600;">REQUIRED</span>
+                            </div>
+
+                            <div class="card-glass" style="padding: 1.25rem; border-left: 3px solid #ef4444;">
+                                <h4 style="color: var(--text-primary); font-size: 1rem; margin-bottom: 0.5rem;">Kubernetes</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.75rem;">
+                                    Container orchestration
+                                </p>
+                                <span style="font-size: 0.75rem; color: #f59e0b; font-weight: 600;">PREFERRED</span>
+                            </div>
+
+                            <div class="card-glass" style="padding: 1.25rem; border-left: 3px solid #ef4444;">
+                                <h4 style="color: var(--text-primary); font-size: 1rem; margin-bottom: 0.5rem;">Next.js</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.75rem;">
+                                    React framework
+                                </p>
+                                <span style="font-size: 0.75rem; color: #f59e0b; font-weight: 600;">PREFERRED</span>
+                            </div>
+                        </div>
+
+                        <a href="career.html" class="btn btn-primary mt-4">
+                            View Learning Path for Missing Skills
+                        </a>
+                    </div>
+
+                    <!-- Keywords Analysis -->
+                    <div class="card mb-5">
+                        <h2 class="card-title mb-3">🔍 Keyword Analysis</h2>
+                        <p class="card-text mb-4">
+                            Important keywords from the job description
+                        </p>
+
+                        <div class="grid grid-2" style="gap: 1.5rem;">
+                            <!-- Present Keywords -->
+                            <div>
+                                <h4 style="color: var(--accent-teal); margin-bottom: 1rem;">Present in Your Resume</h4>
+                                <ul class="styled-list success">
+                                    <li>"Full stack development" - mentioned 2 times</li>
+                                    <li>"Team collaboration" - mentioned 3 times</li>
+                                    <li>"Agile methodology" - mentioned 1 time</li>
+                                    <li>"Code review" - mentioned 2 times</li>
+                                    <li>"Performance optimization" - mentioned 1 time</li>
+                                </ul>
+                            </div>
+
+                            <!-- Missing Keywords -->
+                            <div>
+                                <h4 style="color: #f59e0b; margin-bottom: 1rem;">Missing from Your Resume</h4>
+                                <ul class="styled-list warning">
+                                    <li>"Microservices architecture" - add this keyword</li>
+                                    <li>"Scalable systems" - add this keyword</li>
+                                    <li>"Cross-functional teams" - add this keyword</li>
+                                    <li>"Technical leadership" - add this keyword</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div class="card card-gradient">
+                        <h2 class="card-title mb-3">💡 Recommendations</h2>
+                        <ul class="styled-list">
+                            <li>
+                                <strong style="color: var(--text-primary);">Add missing skills:</strong>
+                                Include GraphQL, Kubernetes, and Next.js in your skills section if you have any experience with them
+                            </li>
+                            <li>
+                                <strong style="color: var(--text-primary);">Update keywords:</strong>
+                                Incorporate missing keywords like "microservices architecture" and "scalable systems" in your experience descriptions
+                            </li>
+                            <li>
+                                <strong style="color: var(--text-primary);">Highlight relevant projects:</strong>
+                                Emphasize projects that demonstrate full-stack capabilities and team collaboration
+                            </li>
+                            <li>
+                                <strong style="color: var(--text-primary);">Tailor your summary:</strong>
+                                Customize your professional summary to match the job's focus on building scalable applications
+                            </li>
+                            <li>
+                                <strong style="color: var(--text-primary);">Learn missing skills:</strong>
+                                Focus on learning GraphQL and Kubernetes to increase your match score for similar roles
+                            </li>
+                        </ul>
+
+                        <div class="flex" style="gap: 1rem; margin-top: 1.5rem;">
+                            <a href="suggestions.html" class="btn btn-secondary" style="flex: 1;">View All Suggestions</a>
+                            <a href="career.html" class="btn btn-primary" style="flex: 1;">Start Learning Path</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Job Descriptions -->
+                <div class="card card-glass">
+                    <h3 class="card-title mb-3">Try a Sample Job Description</h3>
+                    <p class="card-text mb-3">
+                        Click on a sample to see how the matching works
+                    </p>
+                    <div class="grid grid-3" style="gap: 1rem;">
+                        <button class="btn btn-secondary sample-jd-btn" data-role="fullstack">
+                            Full Stack Developer
+                        </button>
+                        <button class="btn btn-secondary sample-jd-btn" data-role="frontend">
+                            Frontend Engineer
+                        </button>
+                        <button class="btn btn-secondary sample-jd-btn" data-role="backend">
+                            Backend Engineer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 ResumeAI - AI-Powered Resume Analyzer & Career Mentor. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

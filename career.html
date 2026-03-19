@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Mentor - AI Resume Analyzer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <button id="menuToggle" class="menu-toggle">☰</button>
+            <a href="index.html" class="navbar-logo">⚡ ResumeAI</a>
+            <ul class="navbar-menu">
+                <li><a href="index.html" class="navbar-link">Home</a></li>
+                <li><a href="upload.html" class="navbar-link">Upload</a></li>
+                <li><a href="dashboard.html" class="navbar-link active">Dashboard</a></li>
+                <li><a href="signin.html" class="btn btn-primary">Sign In</a></li>
+                <li><a href="signup.html" class="btn btn-primary">Sign Up</a></li>
+                <li>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3 style="margin-bottom: 2rem; color: var(--text-primary);">Dashboard</h3>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="dashboard.html" class="sidebar-link">
+                        <span class="sidebar-icon">📊</span>
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="suggestions.html" class="sidebar-link">
+                        <span class="sidebar-icon">✨</span>
+                        <span>Suggestions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="career.html" class="sidebar-link active">
+                        <span class="sidebar-icon">🎯</span>
+                        <span>Career Mentor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="job-match.html" class="sidebar-link">
+                        <span class="sidebar-icon">💼</span>
+                        <span>Job Matching</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="upload.html" class="sidebar-link">
+                        <span class="sidebar-icon">📤</span>
+                        <span>Upload Resume</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">Profile</p>
+                <div class="flex" style="align-items: center; gap: 0.75rem;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-primary);"></div>
+                    <div>
+                        <p id="profileName" style="font-weight: 600; font-size: 0.9rem; margin: 0;">Loading...</p>
+                        <p id="profileRole" style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="fade-in">
+                <!-- Header -->
+                <div class="mb-5">
+                    <h1 class="mb-2">Your AI Career Mentor 🎯</h1>
+                    <p style="color: var(--text-secondary); font-size: 1.125rem;">
+                        Personalized roadmap to reach your career goals
+                    </p>
+                </div>
+
+                <!-- Target Role Overview -->
+                <div class="card card-gradient mb-5">
+                    <div class="flex-between" style="flex-wrap: wrap; gap: 2rem;">
+                        <div>
+                            <p style="color: var(--text-muted); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Target Role</p>
+                            <h2 class="mb-2">Senior Full Stack Developer</h2>
+                            <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1rem;">
+                                Based on your current skills and experience trajectory
+                            </p>
+                            <div class="skill-chips">
+                                <span class="skill-chip">6-10 years experience</span>
+                                <span class="skill-chip">$120k - $180k salary range</span>
+                                <span class="skill-chip">High demand</span>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="width: 120px; height: 120px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                                <span style="font-size: 3.5rem;">🚀</span>
+                            </div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Estimated Timeline: 12-18 months</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Overview -->
+                <div class="card mb-5">
+                    <h3 class="card-title mb-3">Your Progress to Senior Level</h3>
+                    <div class="grid grid-3" style="gap: 1.5rem; margin-top: 2rem;">
+                        <div style="text-align: center;">
+                            <div class="stat-value" style="font-size: 3rem;">78%</div>
+                            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Skills Completed</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="stat-value" style="font-size: 3rem;">6</div>
+                            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Skills Remaining</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="stat-value" style="font-size: 3rem;">4</div>
+                            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Projects Suggested</p>
+                        </div>
+                    </div>
+                    <div class="progress-bar mt-4" style="height: 16px;">
+                        <div class="progress-fill" style="width: 78%"></div>
+                    </div>
+                </div>
+
+                <!-- Career Roadmap -->
+                <div class="card mb-5">
+                    <h2 class="card-title mb-4">Career Roadmap</h2>
+
+                    <div class="timeline">
+                        <!-- Phase 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Phase 1: Master Modern Frontend (0-3 months)</h3>
+                                <p class="timeline-description mb-3">
+                                    Deepen your expertise in modern frontend frameworks and best practices
+                                </p>
+                                <div class="skill-chips">
+                                    <span class="skill-chip missing">Next.js</span>
+                                    <span class="skill-chip missing">TypeScript Advanced</span>
+                                    <span class="skill-chip missing">State Management (Redux)</span>
+                                    <span class="skill-chip matched">React (Current)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Phase 2: Backend & API Design (3-6 months)</h3>
+                                <p class="timeline-description mb-3">
+                                    Strengthen backend architecture and API development skills
+                                </p>
+                                <div class="skill-chips">
+                                    <span class="skill-chip missing">GraphQL</span>
+                                    <span class="skill-chip missing">Microservices Architecture</span>
+                                    <span class="skill-chip missing">Redis Caching</span>
+                                    <span class="skill-chip matched">REST API (Current)</span>
+                                    <span class="skill-chip matched">Node.js (Current)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase 3 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Phase 3: DevOps & Cloud Infrastructure (6-9 months)</h3>
+                                <p class="timeline-description mb-3">
+                                    Learn deployment, scaling, and infrastructure management
+                                </p>
+                                <div class="skill-chips">
+                                    <span class="skill-chip missing">Kubernetes</span>
+                                    <span class="skill-chip missing">CI/CD Pipelines</span>
+                                    <span class="skill-chip missing">Infrastructure as Code</span>
+                                    <span class="skill-chip matched">Docker (Current)</span>
+                                    <span class="skill-chip matched">AWS (Current)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase 4 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Phase 4: Testing & System Design (9-12 months)</h3>
+                                <p class="timeline-description mb-3">
+                                    Master testing strategies and system architecture design
+                                </p>
+                                <div class="skill-chips">
+                                    <span class="skill-chip missing">Jest/Testing Library</span>
+                                    <span class="skill-chip missing">E2E Testing (Cypress)</span>
+                                    <span class="skill-chip missing">System Design Patterns</span>
+                                    <span class="skill-chip missing">Performance Optimization</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase 5 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Phase 5: Leadership & Mentorship (12-18 months)</h3>
+                                <p class="timeline-description mb-3">
+                                    Develop leadership skills and mentor junior developers
+                                </p>
+                                <div class="skill-chips">
+                                    <span class="skill-chip">Code Reviews</span>
+                                    <span class="skill-chip">Technical Documentation</span>
+                                    <span class="skill-chip">Mentoring</span>
+                                    <span class="skill-chip">Architecture Decisions</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills to Learn -->
+                <div class="card mb-5">
+                    <h2 class="card-title mb-4">Priority Skills to Learn</h2>
+
+                    <div class="grid grid-2" style="gap: 1.5rem;">
+                        <!-- Skill 1 -->
+                        <div class="card-glass" style="padding: 1.5rem;">
+                            <div class="flex-between mb-2">
+                                <h4 style="color: var(--text-primary);">GraphQL</h4>
+                                <span style="background: var(--accent-cyan); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">High Priority</span>
+                            </div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                                Modern API query language for efficient data fetching
+                            </p>
+                            <div style="margin-bottom: 1rem;">
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Estimated learning time:</p>
+                                <p style="font-weight: 600; color: var(--text-primary);">2-3 weeks</p>
+                            </div>
+                            <a href="#" class="btn btn-secondary" style="width: 100%; font-size: 0.9rem;">Start Learning</a>
+                        </div>
+
+                        <!-- Skill 2 -->
+                        <div class="card-glass" style="padding: 1.5rem;">
+                            <div class="flex-between mb-2">
+                                <h4 style="color: var(--text-primary);">Kubernetes</h4>
+                                <span style="background: var(--accent-cyan); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">High Priority</span>
+                            </div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                                Container orchestration platform for cloud deployments
+                            </p>
+                            <div style="margin-bottom: 1rem;">
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Estimated learning time:</p>
+                                <p style="font-weight: 600; color: var(--text-primary);">4-6 weeks</p>
+                            </div>
+                            <a href="#" class="btn btn-secondary" style="width: 100%; font-size: 0.9rem;">Start Learning</a>
+                        </div>
+
+                        <!-- Skill 3 -->
+                        <div class="card-glass" style="padding: 1.5rem;">
+                            <div class="flex-between mb-2">
+                                <h4 style="color: var(--text-primary);">Next.js</h4>
+                                <span style="background: var(--accent-cyan); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">High Priority</span>
+                            </div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                                React framework for production-grade applications
+                            </p>
+                            <div style="margin-bottom: 1rem;">
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Estimated learning time:</p>
+                                <p style="font-weight: 600; color: var(--text-primary);">2-3 weeks</p>
+                            </div>
+                            <a href="#" class="btn btn-secondary" style="width: 100%; font-size: 0.9rem;">Start Learning</a>
+                        </div>
+
+                        <!-- Skill 4 -->
+                        <div class="card-glass" style="padding: 1.5rem;">
+                            <div class="flex-between mb-2">
+                                <h4 style="color: var(--text-primary);">Jest/Testing</h4>
+                                <span style="background: #f59e0b; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">Medium Priority</span>
+                            </div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                                JavaScript testing framework for reliable code
+                            </p>
+                            <div style="margin-bottom: 1rem;">
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Estimated learning time:</p>
+                                <p style="font-weight: 600; color: var(--text-primary);">3-4 weeks</p>
+                            </div>
+                            <a href="#" class="btn btn-secondary" style="width: 100%; font-size: 0.9rem;">Start Learning</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Ideas -->
+                <div class="card card-gradient">
+                    <h2 class="card-title mb-4">Recommended Projects to Build</h2>
+                    <p class="card-text mb-4">Hands-on projects to demonstrate your skills to employers</p>
+
+                    <div class="grid grid-2" style="gap: 1.5rem;">
+                        <!-- Project 1 -->
+                        <div class="card" style="background: var(--bg-primary);">
+                            <h4 style="color: var(--text-primary); margin-bottom: 1rem;">Full Stack E-Commerce Platform</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                                Build a complete e-commerce site with user authentication, product catalog, cart, and payment integration
+                            </p>
+                            <div class="skill-chips mb-3">
+                                <span class="skill-chip" style="font-size: 0.75rem;">Next.js</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">GraphQL</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">PostgreSQL</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">Stripe</span>
+                            </div>
+                            <p style="color: var(--accent-teal); font-size: 0.85rem; font-weight: 600;">⏱ 6-8 weeks</p>
+                        </div>
+
+                        <!-- Project 2 -->
+                        <div class="card" style="background: var(--bg-primary);">
+                            <h4 style="color: var(--text-primary); margin-bottom: 1rem;">Real-Time Chat Application</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                                Create a Slack-like chat app with WebSockets, channels, direct messages, and file sharing
+                            </p>
+                            <div class="skill-chips mb-3">
+                                <span class="skill-chip" style="font-size: 0.75rem;">React</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">WebSockets</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">Redis</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">Node.js</span>
+                            </div>
+                            <p style="color: var(--accent-teal); font-size: 0.85rem; font-weight: 600;">⏱ 4-6 weeks</p>
+                        </div>
+
+                        <!-- Project 3 -->
+                        <div class="card" style="background: var(--bg-primary);">
+                            <h4 style="color: var(--text-primary); margin-bottom: 1rem;">DevOps Pipeline Dashboard</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                                Monitor and visualize CI/CD pipelines, deployments, and infrastructure metrics
+                            </p>
+                            <div class="skill-chips mb-3">
+                                <span class="skill-chip" style="font-size: 0.75rem;">Kubernetes</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">CI/CD</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">Grafana</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">Docker</span>
+                            </div>
+                            <p style="color: var(--accent-teal); font-size: 0.85rem; font-weight: 600;">⏱ 5-7 weeks</p>
+                        </div>
+
+                        <!-- Project 4 -->
+                        <div class="card" style="background: var(--bg-primary);">
+                            <h4 style="color: var(--text-primary); margin-bottom: 1rem;">AI-Powered Analytics Dashboard</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                                Data visualization dashboard with ML-powered insights and predictions
+                            </p>
+                            <div class="skill-chips mb-3">
+                                <span class="skill-chip" style="font-size: 0.75rem;">TypeScript</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">D3.js</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">Python</span>
+                                <span class="skill-chip" style="font-size: 0.75rem;">AWS</span>
+                            </div>
+                            <p style="color: var(--accent-teal); font-size: 0.85rem; font-weight: 600;">⏱ 6-8 weeks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 ResumeAI - AI-Powered Resume Analyzer & Career Mentor. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
